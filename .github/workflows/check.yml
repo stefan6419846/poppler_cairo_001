@@ -17,6 +17,7 @@ jobs:
       run: |
         wget https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.tar.gz
         tar -xvf pixman-master.tar.gz
+        ls -l
         cd pixman-master
         meson setup
         sudo ninja -C build install
