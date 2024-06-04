@@ -63,14 +63,14 @@ jobs:
         cd build
         cmake -DENABLE_BOOST=OFF -DENABLE_GPGME=OFF -DENABLE_LIBTIFF=OFF -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LCMS=OFF -DENABLE_LIBCURL=OFF -DENABLE_NSS3=OFF ..
         make
-        sudo make install
     - name: test rendering
       run: |
         wget https://github.com/python-pillow/Pillow/files/15401682/out2.pdf
-        pdftocairo -png out2.pdf out2.png
+        ./poppler-master/build/utils/pdftocairo -png out2.pdf out2.png
+        ./poppler-master/build/utils/pdftocairo -jpeg out2.pdf out2.jpg
     - name: upload
       uses: actions/upload-artifact@v4
       with:
-        name: out2.png
+        name: files
         path: |
-          out2.png
+          out2.*
