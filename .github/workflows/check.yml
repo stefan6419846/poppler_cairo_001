@@ -41,8 +41,8 @@ jobs:
     - name: fontconfig
       run: |
         wget https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/e503eae0f935007ad2ed97102854627c503b24a0/fontconfig-e503eae0f935007ad2ed97102854627c503b24a0.tar.gz
-        tar -xvf fontconfig-*
-        cd fontconfig-*
+        tar -xvf fontconfig-e503eae0f935007ad2ed97102854627c503b24a0.tar.gz
+        cd fontconfig-e503eae0f935007ad2ed97102854627c503b24a0
         meson setup build
         sudo ninja -C build install
     # https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/INSTALL
