@@ -61,7 +61,7 @@ jobs:
         cd poppler-master
         mkdir build
         cd build
-        cmake -DENABLE_BOOST=OFF -DENABLE_GPGME=OFF -DENABLE_LIBTIFF=OFF -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LCMS=OFF -DENABLE_LIBCURL=OFF ..
+        cmake -DENABLE_BOOST=OFF -DENABLE_GPGME=OFF -DENABLE_LIBTIFF=OFF -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LCMS=OFF -DENABLE_LIBCURL=OFF -DENABLE_NSS3=OFF ..
         make
         sudo make install
     - name: test rendering
