@@ -17,7 +17,7 @@ jobs:
       run: |
         wget https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.tar.gz
         tar -xvf pixman-master.tar.gz
-        cd pixman*
+        cd pixman-master
         meson setup
         sudo ninja -C build install
     # libpng
@@ -25,7 +25,7 @@ jobs:
       run: |
         wget https://github.com/pnggroup/libpng/archive/refs/heads/libpng16.tar.gz
         tar -xvf libpng16.tar.gz
-        cd libpng16*
+        cd libpng16
         ./configure
         sudo make install
     # zlib
@@ -34,7 +34,7 @@ jobs:
       run: |
         wget https://gitlab.freedesktop.org/freetype/freetype/-/archive/master/freetype-master.tar.gz
         tar -xvf freetype-master.tar.gz
-        cd freetype*
+        cd freetype-master
         meson setup
         sudo ninja -C build install
     # fontconfig
@@ -42,7 +42,7 @@ jobs:
       run: |
         wget https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/main/fontconfig-main.tar.gz
         tar -xvf fontconfig-main.tar.gz
-        cd fontconfig*
+        cd fontconfig-main
         meson setup
         sudo ninja -C build install
     # https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/INSTALL
@@ -50,14 +50,14 @@ jobs:
       run: |
         wget https://gitlab.freedesktop.org/cairo/cairo/-/archive/master/cairo-master.tar.gz
         tar -xvf cairo-master.tar.gz
-        cd cairo*
+        cd cairo-master
         meson setup
         sudo ninja -C build install
     - name: poppler
       run: |
         wget https://gitlab.freedesktop.org/poppler/poppler/-/archive/master/poppler-master.tar.gz
         tar -xvf poppler-master.tar.gz
-        cd poppler-*
+        cd poppler-master
         mkdir build
         cd build
         cmake -DENABLE_BOOST=OFF -DENABLE_GPGME=OFF -DENABLE_LIBTIFF=OFF -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LCMS=OFF -DENABLE_LIBCURL=OFF ..
