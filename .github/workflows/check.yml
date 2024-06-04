@@ -18,7 +18,7 @@ jobs:
         wget https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.tar.gz
         tar -xvf pixman-master.tar.gz
         cd pixman-master
-        meson setup .
+        meson setup builddir
         sudo ninja -C build install
     # libpng
     - name: libpng
@@ -35,7 +35,7 @@ jobs:
         wget https://gitlab.freedesktop.org/freetype/freetype/-/archive/master/freetype-master.tar.gz
         tar -xvf freetype-master.tar.gz
         cd freetype-master
-        meson setup .
+        meson setup builddir
         sudo ninja -C build install
     # fontconfig
     - name: freetype
@@ -43,7 +43,7 @@ jobs:
         wget https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/main/fontconfig-main.tar.gz
         tar -xvf fontconfig-main.tar.gz
         cd fontconfig-main
-        meson setup .
+        meson setup builddir
         sudo ninja -C build install
     # https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/INSTALL
     - name: cairo
@@ -51,7 +51,7 @@ jobs:
         wget https://gitlab.freedesktop.org/cairo/cairo/-/archive/master/cairo-master.tar.gz
         tar -xvf cairo-master.tar.gz
         cd cairo-master
-        meson setup .
+        meson setup builddir
         sudo ninja -C build install
     - name: poppler
       run: |
