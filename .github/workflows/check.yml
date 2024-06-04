@@ -25,7 +25,7 @@ jobs:
       run: |
         wget https://github.com/pnggroup/libpng/archive/refs/heads/libpng16.tar.gz
         tar -xvf libpng16.tar.gz
-        cd libpng16
+        cd libpng-libpng16
         ./configure
         sudo make install
     # zlib
