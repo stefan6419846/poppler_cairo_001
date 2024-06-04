@@ -1,0 +1,75 @@
+name: Wheels
+
+on:
+- push
+- workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+    - name: build deps
+      run:
+        sudo apt-get install meson ninja-build
+    # https://gitlab.freedesktop.org/pixman/pixman/-/blob/master/INSTALL?ref_type=heads
+    - name: pixman
+      run: |
+        wget https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.tar.gz
+        tar -xvf pixman-master.tar.gz
+        cd pixman*
+        meson setup
+        sudo ninja -C build install
+    # libpng
+    - name: libpng
+      run: |
+        wget https://github.com/pnggroup/libpng/archive/refs/heads/libpng16.tar.gz
+        tar -xvf libpng16.tar.gz
+        cd libpng16*
+        ./configure
+        sudo make install
+    # zlib
+    # freetype
+    - name: freetype
+      run: |
+        wget https://gitlab.freedesktop.org/freetype/freetype/-/archive/master/freetype-master.tar.gz
+        tar -xvf freetype-master.tar.gz
+        cd freetype*
+        meson setup
+        sudo ninja -C build install
+    # fontconfig
+    - name: freetype
+      run: |
+        wget https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/main/fontconfig-main.tar.gz
+        tar -xvf fontconfig-main.tar.gz
+        cd fontconfig*
+        meson setup
+        sudo ninja -C build install
+    # https://gitlab.freedesktop.org/cairo/cairo/-/blob/master/INSTALL
+    - name: cairo
+      run: |
+        wget https://gitlab.freedesktop.org/cairo/cairo/-/archive/master/cairo-master.tar.gz
+        tar -xvf cairo-master.tar.gz
+        cd cairo*
+        meson setup
+        sudo ninja -C build install
+    - name: poppler
+      run: |
+        wget https://gitlab.freedesktop.org/poppler/poppler/-/archive/master/poppler-master.tar.gz
+        tar -xvf poppler-master.tar.gz
+        cd poppler-*
+        mkdir build
+        cd build
+        cmake -DENABLE_BOOST=OFF -DENABLE_GPGME=OFF -DENABLE_LIBTIFF=OFF -DENABLE_QT5=OFF -DENABLE_QT6=OFF -DENABLE_LCMS=OFF -DENABLE_LIBCURL=OFF ..
+        make
+        sudo make install
+    - name: test rendering
+      run: |
+        wget https://github.com/python-pillow/Pillow/files/15401682/out2.pdf
+        pdftocairo -png out2.pdf out2.png
+    - name: upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: out2.png
+        path: |
+          out2.png
